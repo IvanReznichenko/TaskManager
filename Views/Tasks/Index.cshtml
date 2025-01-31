@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TaskItem>
+
+<h2 class="mb-4">Lista Twoich Zadań</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-4">➕ Dodaj nowe zadanie</a>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Tytuł</th>
+            <th>Status</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>
+                    @if (task.IsCompleted)
+                    {
+                        <span class="badge bg-success">Zakończone</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">Otwarte</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@task.Id" class="btn btn-warning">✏️ Edytuj</a>
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@task.Id" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć to zadanie?');">
+                            Usuń
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

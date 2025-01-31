@@ -1,0 +1,7 @@
+﻿@model TaskItem
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <input asp-for="Title" required />
+    <input asp-for="IsCompleted" type="checkbox" />
+    <button type="submit">Zapisz</button>
+</form>

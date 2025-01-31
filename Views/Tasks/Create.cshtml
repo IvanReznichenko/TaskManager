@@ -1,0 +1,16 @@
+﻿@model TaskItem
+
+<h2>Dodaj nowe zadanie</h2>
+
+<form asp-action="Create" class="mt-4">
+    <div class="mb-3">
+        <label class="form-label">Tytuł zadania:</label>
+        <input asp-for="Title" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Opis:</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">✅ Dodaj</button>
+    <a asp-action="Index" class="btn btn-secondary">🔙 Powrót</a>
+</form>
