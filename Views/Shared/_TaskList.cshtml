@@ -1,11 +1,5 @@
 ﻿@model IEnumerable<TaskItem>
 
-<h2 class="mb-4">Lista Twoich Zadań</h2>
-
-<a asp-action="Create" class="btn btn-primary mb-4">➕ Dodaj nowe zadanie</a>
-
-@* @await Html.PartialAsync("_TaskList", Model) *@
-
 <table class="table">
     <tr>
         <th>Tytuł</th>
@@ -19,10 +13,7 @@
             <td>@(task.IsCompleted ? "✔️ Zakończone" : "❌ Otwarte")</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@task.Id" class="btn btn-warning">Edytuj</a>
-
-                <form asp-action="Delete" asp-route-id="@task.Id" method="post" style="display:inline;">
-                    <button type="submit" class="btn btn-danger">Usuń</button>
-                </form>
+                <a asp-action="Delete" asp-route-id="@task.Id" class="btn btn-danger">Usuń</a>
             </td>
         </tr>
     }

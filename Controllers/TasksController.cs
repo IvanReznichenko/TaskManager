@@ -48,16 +48,15 @@ public class TasksController : Controller
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
-
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
         var task = await _context.Tasks.FindAsync(id);
-        if (task != null)
-        {
-            _context.Tasks.Remove(task);
-            await _context.SaveChangesAsync();
-        }
-        return RedirectToAction("Index");
+        if (task == null)
+            return NotFound();
+
+        _context.Tasks.Remove(task);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
     }
 }
